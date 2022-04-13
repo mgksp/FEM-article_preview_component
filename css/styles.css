@@ -41,6 +41,7 @@ main {
 .article-card {
   background-color: white;
   border-radius: 1rem;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
 @media only screen and (min-width: 680px) {
   .article-card {
