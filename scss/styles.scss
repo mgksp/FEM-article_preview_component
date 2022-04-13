@@ -1,7 +1,221 @@
+@use "reset";
+@use "breakpoints" as *;
+
+:root {
+  --dkr-grayish-blue: hsl(217, 19%, 35%);
+  --dk-desaturated-blue: hsl(214, 17%, 51%);
+  --grayish-blue: hsl(212, 23%, 69%);
+  --lt-grayish-blue: hsl(210, 46%, 95%);
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  font-size: 1.3rem;
+  letter-spacing: 0.2px;
+  background-color: var(--lt-grayish-blue);
+  display: grid;
+  grid-template-rows: 1fr min-content;
+  place-items: center;
+}
+
+main {
+  padding-inline: 2.5rem;
+  max-width: 78rem;
+}
+
+.article-card {
+  background-color: white;
+  border-radius: 1rem;
+
+  @include breakpoint($first) {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    grid-template-areas:
+      "img content"
+      "img user";
+  }
+
+  &__img {
+    grid-area: img;
+    display: block;
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
+    object-position: 0 -1.5rem;
+    margin-bottom: 1.6rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    overflow: hidden;
+
+    @include breakpoint($first) {
+      border-top-right-radius: 0;
+      border-top-left-radius: 1rem;
+      border-bottom-left-radius: 1rem;
+      height: 100%;
+      margin: 0;
+      object-position: left;
+    }
+  }
+
+  &__content {
+    grid-area: content;
+    padding: 2rem 3.2rem;
+
+    @include breakpoint($first) {
+      padding-top: 3.2rem;
+      padding-inline: 4rem;
+      padding-bottom: 1.6rem;
+    }
+
+    &__title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 2.4rem;
+      color: var(--dkr-grayish-blue);
+      margin-bottom: 1.6rem;
+
+      @include breakpoint($first) {
+        font-size: 2rem;
+        line-height: 2.8rem;
+      }
+    }
+
+    &__desc {
+      line-height: 2rem;
+      color: var(--dk-desaturated-blue);
+    }
+  }
+
+  &__user {
+    $self: &;
+    grid-area: user;
+    position: relative;
+    padding: 1.6rem 3.2rem;
+    display: grid;
+    grid-template-columns: min-content 1fr min-content;
+    align-items: center;
+    gap: 2rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    overflow: hidden;
+
+    @include breakpoint($first) {
+      overflow: visible;
+      padding-bottom: 4rem;
+    }
+
+    &__img {
+      height: 4rem;
+      width: 4rem;
+      border-radius: 50%;
+      overflow: hidden;
+
+      & img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    &__details {
+      &__name {
+        color: var(--dkr-grayish-blue);
+        font-weight: 700;
+      }
+
+      &__date {
+        color: #b0b0c0;
+      }
+    }
+
+    &__share-icon {
+      z-index: 99;
+      height: 3.2rem;
+      width: 3.2rem;
+      border-radius: 50%;
+      background-color: var(--lt-grayish-blue);
+      display: grid;
+      place-content: center;
+      cursor: pointer;
+    }
+
+    &__share-socials {
+      position: absolute;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+      padding: 1.6rem 3.2rem;
+      background-color: var(--dkr-grayish-blue);
+      color: var(--lt-grayish-blue);
+      transition: transform 250ms ease-in-out, opacity 250ms ease-in-out;
+      transform: scaleX(0);
+      transform-origin: right;
+
+      @include breakpoint($first) {
+        top: -80%;
+        right: -6%;
+        width: 25rem;
+        height: auto;
+        padding: 2rem;
+        border-radius: 1rem;
+        justify-content: center;
+        transform: scaleX(1);
+        opacity: 0;
+        transform: translateY(25%);
+
+        & .shape {
+          position: absolute;
+          z-index: 1;
+          bottom: -20%;
+          right: 21%;
+          clip-path: polygon(0 50%, 50% 100%, 100% 50%);
+          width: 4rem;
+          height: 4rem;
+          background-color: var(--dkr-grayish-blue);
+        }
+      }
+
+      & p {
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        letter-spacing: 5.5px;
+        color: var(--dk-desaturated-blue);
+      }
+    }
+
+    &--share {
+      #{ $self }__share-icon {
+        background-color: var(--dk-desaturated-blue);
+
+        &__icon path {
+          fill: var(--lt-grayish-blue);
+        }
+      }
+
+      #{ $self }__share-socials {
+        transform: scaleX(1);
+
+        @include breakpoint($first) {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
 .attribution {
   font-size: 11px;
   text-align: center;
+  margin-bottom: 1rem;
+  color: var(--dk-desaturated-blue);
+
   a {
-    color: hsl(228, 45%, 44%);
+    color: var(--dkr-grayish-blue);
+    font-weight: 700;
+    text-decoration: none;
   }
 }
