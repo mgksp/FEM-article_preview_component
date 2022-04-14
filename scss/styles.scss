@@ -103,7 +103,8 @@ main {
 
     @include breakpoint($first) {
       overflow: visible;
-      padding-bottom: 4rem;
+      padding-inline: 4rem;
+      padding-bottom: 3.2rem;
     }
 
     &__img {
