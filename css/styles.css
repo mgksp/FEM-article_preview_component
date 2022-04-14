@@ -148,6 +148,7 @@ main {
   display: grid;
   place-content: center;
   cursor: pointer;
+  border: none;
 }
 .article-card__user__share-socials {
   position: absolute;
